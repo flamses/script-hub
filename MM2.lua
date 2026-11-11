@@ -3,7 +3,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
-assert(Drawing and Drawing.new, "dawing lib is doodoo.")
+assert(Drawing and Drawing.new, "Drawing API is not available in this environment.")
 local MacLib = loadstring(game:HttpGet(
     "https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"
 ))()
@@ -2516,7 +2516,7 @@ local AutoFarmTab = TabGroup:Tab({
     Image = "rbxassetid://7743866529",
 })
 local FarmSection = AutoFarmTab:Section({ Side = "Left" })
-FarmSection:Header({ Name = "Candy Farm" })
+FarmSection:Header({ Name = "Coin Farm" })
 FarmEnabledToggle = FarmSection:Toggle({
     Name = "Auto Farm",
     Default = false,
@@ -2574,7 +2574,7 @@ FarmSection:Toggle({
     end,
 }, "FarmAntiFling")
 FarmSection:Toggle({
-    Name = "Full Bag Auto Hero", Default = false,
+    Name = "Auto Shoot When Full", Default = false,
     Callback = function(value)
         FarmSettings.FullBagHero = value
         if not value and HeroState.Running and stopBagHero then
@@ -2588,7 +2588,7 @@ FarmSection:Toggle({
     end,
 }, "FarmFullBagHero")
 FarmSection:Toggle({
-    Name = "Auto Rejoin (Best Effort)", Default = false,
+    Name = "Auto Rejoin", Default = false,
     Callback = function(value) FarmSettings.AutoRejoin = value end,
 }, "FarmAutoRejoin")
 
