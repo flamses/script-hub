@@ -1274,11 +1274,14 @@ local function coinID(part)
 end
 
 local function isCandy(part)
-    return part and part:IsA("BasePart") and part:IsDescendantOf(workspace)
-        and part.Name == "Coin_Server" and coinID(part) == "Candy"
+    return part
+        and part:IsA("BasePart")
+        and part:IsDescendantOf(workspace)
+        and part.Name == "Coin_Server"
         and part:GetAttribute("Collected") ~= true
         and part:GetAttribute("Delete") ~= true
 end
+
 
 local function getTouchingPlayer(part)
     if not part then return nil end
@@ -1438,7 +1441,7 @@ local function trackCoin(coin, existing)
     selectHotspotMap(coin)
     observeCoin(coin, info, not existing)
     local connection = coin.Touched:Connect(function(otherPart)
-        if not FarmSettings.Enabled or coinID(coin) ~= "Candy" then return end
+        if not FarmSettings.Enabled or not isCandy(coin) then return end
         local player = getTouchingPlayer(otherPart)
         if player == LocalPlayer then
             info.TouchedByMe = true
